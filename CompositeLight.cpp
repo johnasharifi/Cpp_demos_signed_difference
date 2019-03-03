@@ -23,7 +23,6 @@ CompositeLight::~CompositeLight()
 float CompositeLight::Dot(VecReal normal)
 {
 	float sum = (normal.x * _direction.x + normal.y * _direction.y + normal.z * _direction.z) / _direction.Mag();
-	// printf("dot of %f,%f,%f with %f,%f,%f is %f\n", normal.x, normal.y, normal.z, _direction.x, _direction.y, _direction.z, sum);
 
 	if (sum < _direction.w) {
 		sum = _direction.w;
@@ -31,6 +30,5 @@ float CompositeLight::Dot(VecReal normal)
 
 	if (sum > 1) sum = 1;
 
-	// return normal.w + (1 - normal.w) * sum;
 	return(sum);
 }

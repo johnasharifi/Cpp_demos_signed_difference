@@ -17,6 +17,31 @@ void VecReal::Normalize(float sharpness) {
 	Normalize();
 }
 
+float VecReal::SumPI(VecReal v)
+{
+	return(x * v.x + y * v.y + z * v.z);
+}
+
 float VecReal::Mag() {
 	return(sqrt(x*x + y*y + z*z));
+}
+
+VecReal VecReal::operator-(VecReal v)
+{
+	return VecReal{ x - v.x, y - v.y, z - v.z, w - v.w};
+}
+
+VecReal VecReal::operator+(VecReal v)
+{
+	return VecReal{ v.x + x, v.y + y, v.z + z, v.w + w };
+}
+
+VecReal VecReal::operator*(float f)
+{
+	return VecReal{ x * f, y * f, z * f, w * f};
+}
+
+VecReal VecReal::operator*(VecReal v)
+{
+	return VecReal{ v.x * x, v.y * y, v.z * z, v.w * w };
 }

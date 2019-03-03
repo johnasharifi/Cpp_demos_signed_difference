@@ -17,6 +17,7 @@
 #include <cmath>
 #include <list>
 
+#include "SDRendering.h"
 #include "VecReal.h"
 #include "CompositeLight.h"
 #include "SDObject.h"

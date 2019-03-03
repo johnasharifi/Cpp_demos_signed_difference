@@ -19,14 +19,16 @@ int main()
 {
 	HWND myconsole = GetConsoleWindow(); //Get a console handle
 	HDC mydc = GetDC(myconsole); //Get a handle to device context
-
+	MoveWindow(myconsole, 0, 0, SDRendering::winDim1, SDRendering::winDim2, true);
 	CompositeLight* light = new CompositeLight(270.0f, 30.0f, 0.05f);
 
 	std::list<SDObject>* scene_objects = new std::list<SDObject>;
-	scene_objects->push_back(SDObject(VecReal{ 400.0f, 000.0f, 0.0f, 0.0f }, VecReal{ 0.1f, 0.4f, 1.0f, 0.0f }, 20));
-	scene_objects->push_back(SDObject(VecReal{ 400.0f, 100.0f, 0.0f, 0.0f }, VecReal{ 0.1f, 0.4f, 1.0f, 0.0f }, 30));
-	scene_objects->push_back(SDObject(VecReal{ 400.0f, 200.0f, 0.0f, 0.0f }, VecReal{ 0.1f, 0.4f, 1.0f, 0.0f }, 40));
-	scene_objects->push_back(SDObject(VecReal{ 400.0f, 300.0f, 0.0f, 0.0f }, VecReal{ 0.1f, 0.4f, 1.0f, 0.0f }, 50));
+
+	scene_objects->push_back(SDObject(VecReal{ -10.0f, 0.0f, 3.0f, 0.0f }, VecReal{ 0.1f, 0.5f, 1.0f, 0.1f }, 15));
+	scene_objects->push_back(SDObject(VecReal{ -05.0f, 0.0f, 3.0f, 0.0f }, VecReal{ 0.2f, 0.4f, 1.0f, 0.2f }, 15));
+	scene_objects->push_back(SDObject(VecReal{ +00.0f, 0.0f, 3.0f, 0.0f }, VecReal{ 0.3f, 0.3f, 1.0f, 0.3f }, 15));
+	scene_objects->push_back(SDObject(VecReal{ +05.0f, 0.0f, 3.0f, 0.0f }, VecReal{ 0.4f, 0.2f, 1.0f, 0.2f }, 15));
+	scene_objects->push_back(SDObject(VecReal{ +10.0f, 0.0f, 3.0f, 0.0f }, VecReal{ 0.5f, 0.1f, 1.0f, 0.1f }, 15));
 
 	DrawSceneData(mydc, light, scene_objects);
 
