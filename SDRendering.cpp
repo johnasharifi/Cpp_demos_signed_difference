@@ -8,7 +8,6 @@ const float PI = 3.14f;
 const int winDim1 = 800;
 const int winDim2 = 640;
 const int pixMax = 255;
-const float cam_max_clip = 1000.0f;
 
 void DrawSceneData(HDC mydc, CompositeLight* light, std::list<SDObject>* scene_objects, float* zbuffer) {
 	for (std::list<SDObject>::iterator sdo = scene_objects->begin(); sdo != scene_objects->end(); sdo++) {
@@ -25,7 +24,6 @@ int main()
 	float* zbuffer = new float[winDim1 * winDim2];
 	for (int i = 0; i < winDim1 * winDim2; i++)
 		zbuffer[i] = 0.0f;
-		// zbuffer[i] = cam_max_clip;
 
 	std::list<SDObject>* scene_objects = new std::list<SDObject>;
 
