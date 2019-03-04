@@ -21,8 +21,8 @@ The results of sprint 2 are below:
 * <a href="https://www.codecogs.com/eqnedit.php?latex=clip_x&space;=&space;winDim1&space;/&space;2&space;&plus;&space;dp.x&space;*&space;fov&space;/&space;dp.z;" target="_blank"><img src="https://latex.codecogs.com/gif.latex?clip_x&space;=&space;winDim1&space;/&space;2&space;&plus;&space;dp.x&space;*&space;fov&space;/&space;dp.z;" title="clip_x = winDim1 / 2 + dp.x * fov / dp.z;" /></a>
 * <a href="https://www.codecogs.com/eqnedit.php?latex=clip_y&space;=&space;winDim2&space;/&space;2&space;&plus;&space;dp.y&space;*&space;fov&space;/&space;dp.z;" target="_blank"><img src="https://latex.codecogs.com/gif.latex?clip_y&space;=&space;winDim2&space;/&space;2&space;&plus;&space;dp.y&space;*&space;fov&space;/&space;dp.z;" title="clip_y = winDim2 / 2 + dp.y * fov / dp.z;" /></a>
 
-<img src="https://github.com/johnasharifi/Cpp_demos_signed_difference/blob/master/image_3_zbuffer.png" width="48">
-<img src="https://github.com/johnasharifi/Cpp_demos_signed_difference/blob/master/image_2_perspective.png" width="48">
+<img src="https://github.com/johnasharifi/Cpp_demos_signed_difference/blob/master/image_3_zbuffer.png" width="200">
+<img src="https://github.com/johnasharifi/Cpp_demos_signed_difference/blob/master/image_2_perspective.png" width="200">
 
 # Sprint 1 - building the basics
 
@@ -30,7 +30,7 @@ The results of sprint 2 are below:
 * Multiple SDSpheres with varying radii and positions
 * Shading and normal calculation
 
-<img src="https://github.com/johnasharifi/Cpp_demos_signed_difference/blob/master/image_1_shading.png" width="48">
+<img src="https://github.com/johnasharifi/Cpp_demos_signed_difference/blob/master/image_1_shading.png" width="200">
 
 # To do
 
