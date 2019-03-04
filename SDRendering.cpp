@@ -8,10 +8,11 @@ const float PI = 3.14f;
 const int winDim1 = 800;
 const int winDim2 = 640;
 const int pixMax = 255;
+const float cam_max_clip = 1000.0f;
 
-void DrawSceneData(HDC mydc, CompositeLight* light, std::list<SDObject>* scene_objects) {
+void DrawSceneData(HDC mydc, CompositeLight* light, std::list<SDObject>* scene_objects, float* zbuffer) {
 	for (std::list<SDObject>::iterator sdo = scene_objects->begin(); sdo != scene_objects->end(); sdo++) {
-		sdo->Draw(mydc, light);
+		sdo->Draw(mydc, light, zbuffer);
 	}
 }
 
@@ -21,6 +22,10 @@ int main()
 	HDC mydc = GetDC(myconsole); //Get a handle to device context
 	MoveWindow(myconsole, 0, 0, SDRendering::winDim1, SDRendering::winDim2, true);
 	CompositeLight* light = new CompositeLight(270.0f, 30.0f, 0.05f);
+	float* zbuffer = new float[winDim1 * winDim2];
+	for (int i = 0; i < winDim1 * winDim2; i++)
+		zbuffer[i] = 0.0f;
+		// zbuffer[i] = cam_max_clip;
 
 	std::list<SDObject>* scene_objects = new std::list<SDObject>;
 
@@ -30,7 +35,7 @@ int main()
 	scene_objects->push_back(SDObject(VecReal{ +05.0f, 0.0f, 3.0f, 0.0f }, VecReal{ 0.4f, 0.2f, 1.0f, 0.2f }, 15));
 	scene_objects->push_back(SDObject(VecReal{ +10.0f, 0.0f, 3.0f, 0.0f }, VecReal{ 0.5f, 0.1f, 1.0f, 0.1f }, 15));
 
-	DrawSceneData(mydc, light, scene_objects);
+	DrawSceneData(mydc, light, scene_objects, zbuffer);
 
 	delete light;
 	scene_objects->clear();

@@ -12,7 +12,7 @@ public:
 	SDObject();
 	SDObject(VecReal, VecReal, float);
 	~SDObject();
-	void Draw(HDC, CompositeLight*);
+	void Draw(HDC hdc, CompositeLight * cl, float*);
 	bool Contains(float, float, float);
 	VecReal _position;
 	VecReal _color;

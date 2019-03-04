@@ -19,7 +19,7 @@ SDObject::~SDObject()
 {
 }
 
-void SDObject::Draw(HDC hdc, CompositeLight* cl) {
+void SDObject::Draw(HDC hdc, CompositeLight* cl, float* zbuffer) {
 	const int pmax = 255;
 
 	VecReal dp = _position - VecReal{0,0,0,1};
@@ -37,13 +37,18 @@ void SDObject::Draw(HDC hdc, CompositeLight* cl) {
 	float clip_x = SDRendering::winDim1 / 2 + dp.x * fov / dp.z;
 	float clip_y = SDRendering::winDim2 / 2 + dp.y * fov / dp.z;
 
-	for (int i = (int)clip_x - local_r; i < clip_x + local_r; i++) {
-		for (int j = (int)clip_y - local_r; j < clip_y + local_r; j++) {
+	for (int i = (int)(clip_x - local_r); i < clip_x + local_r; i++) {
+		for (int j = (int)(clip_y - local_r); j < clip_y + local_r; j++) {
+
 			float local_pixel_x = (i - clip_x) / local_r;
 			float local_pixel_y = (j - clip_y) / local_r;
+			float local_pixel_z = 1 - sqrt(local_pixel_x * local_pixel_x + local_pixel_y * local_pixel_y);
 
-			if (Contains(local_pixel_x, local_pixel_y, local_r)) {
-				float local_pixel_z = 1 - sqrt(local_pixel_x * local_pixel_x + local_pixel_y * local_pixel_y);
+			int zbuffer_index = i * SDRendering::winDim1 + j;
+			bool zbuffer_is_writable = (zbuffer_index >= 0 && zbuffer_index < SDRendering::winDim1 * SDRendering::winDim2) && (zbuffer[zbuffer_index] < local_pixel_z);
+
+			if (Contains(local_pixel_x, local_pixel_y, local_r) && zbuffer_is_writable) {
+				zbuffer[zbuffer_index] = local_pixel_z;
 				float dot = cl->Dot(VecReal{local_pixel_x, local_pixel_y, local_pixel_z, 1.0f});
 					
 				SetPixel(hdc, i, j, RGB(_color.x * pmax * dot, _color.y * pmax * dot, _color.z * pmax * dot));
