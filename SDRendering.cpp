@@ -36,7 +36,9 @@ int main()
 	DrawSceneData(mydc, light, scene_objects, zbuffer);
 
 	delete light;
+	delete[] zbuffer;
 	scene_objects->clear();
+	delete scene_objects;
 
 	getchar();
 }
